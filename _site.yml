@@ -1,0 +1,17 @@
+name: "how2-sql"
+output_dir: "."
+navbar:
+  title: "how2-sql"
+  left:
+    - text: "menu 1"
+      menu:
+        - text: "item 1"
+          href: todo.html
+        - text: "---------"
+        - text: "item 2"
+          href: todo.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/dkidney/how2-sql
+    - icon: fa-linkedin fa-lg
+      href: https://uk.linkedin.com/in/darren-kidney-495b8a103/

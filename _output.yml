@@ -1,0 +1,10 @@
+html_document:
+    highlight: haddock
+    theme: cerulean
+    toc: true
+    toc_depth: 4
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+    css:
+      _style.css

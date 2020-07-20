@@ -1,0 +1,11 @@
+---
+title: "How to do stuff in SQL"
+author: "Darren Kidney"
+date: '`r format(Sys.Date(), "%d %b %Y")`'
+---
+
+*********************************************************************
+
+## links
+
+* todo
