@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r knitr_config, code=readLines("~/github/how2/how2-py/_knitr_config.R"), echo=FALSE}
+```{r knitr_config, code=readLines("_knitr_config.R"), echo=FALSE}
 ```
 
 *********************************************************************
