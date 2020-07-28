@@ -3,14 +3,21 @@ output_dir: "."
 navbar:
   title: "how2-sql"
   left:
-    - text: "menu 1"
+    - text: "statements"
       menu:
-        - text: "item 1"
+        - text: "create"
+          href: create.html
+        - text: "insert"
           href: todo.html
-        - text: "---------"
-        - text: "item 2"
+        - text: "select"
+          href: select.html
+        - text: "update"
+          href: todo.html
+        - text: "delete"
           href: todo.html
   right:
+    - text: "glossary"
+      href: glossary.html
     - text: "how2"
       menu:
         - text: "how2-py"

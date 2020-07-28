@@ -1,0 +1,39 @@
+---
+title: create
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r knitr_config, code=readLines("_knitr_config.R"), echo=FALSE}
+```
+
+*********************************************************************
+
+## create from scratch
+
+```sql
+create table new_table_name (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+   ....
+);
+```
+
+Example data types:
+
+* `varchar(255)`  
+* `number(38,0)`  
+* `int`  
+
+## create from an existing table
+
+```sql
+create table new_table_name as 
+    select column1, column2,...
+    from existing_table_name
+    where .... ;
+```
+
+
+

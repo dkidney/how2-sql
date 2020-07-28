@@ -1,5 +1,5 @@
 ---
-title: TODO
+title: glossary
 editor_options: 
   chunk_output_type: console
 ---
@@ -9,3 +9,7 @@ editor_options:
 
 *********************************************************************
 
+term | definition
+------------- | -------------
+RDBMS | Relational DataBase Managenent System
+asdf | asdf

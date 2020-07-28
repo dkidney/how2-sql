@@ -1,0 +1,202 @@
+---
+title: select
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r knitr_config, code=readLines("_knitr_config.R"), echo=FALSE}
+```
+
+*********************************************************************
+
+* https://www.w3schools.com/sql/default.asp  
+* https://www.w3schools.com/sql/sql_quickref.asp  
+* https://docs.telemetry.mozilla.org/concepts/sql_style.html
+
+*********************************************************************
+
+## faqs
+
+* how to use [case when](#case-when)  
+* how to use [having](#having)  
+* how to do a grouped sum ???
+
+*********************************************************************
+
+## structure
+
+```sql
+select column_name(s)
+from table_name
+where condition
+group by column_name(s)
+having condition
+order by column_name(s);
+```
+
+*********************************************************************
+
+## clauses
+
+### where {#where}
+
+#### like
+
+* the 'like' predicate is used to search for a string pattern in a column  
+* the `%` is a wildcard character and represents 0 or more of any character and can be placed at the start or end of the pattern
+
+```sql
+select col1
+from table
+where col2 like 'asdf%';
+```
+
+```sql
+select col1
+from table
+where col2 not like 'asdf%';
+```
+
+#### like any
+
+```sql
+select *
+from table
+where col like any (
+  'this %',
+  'that %'
+)
+```
+
+#### and / or
+
+```sql
+select col1
+from table
+where (col2 = 1 or col2 = 2)
+and (col3 = 'A' or col3 = 'B');
+```
+
+#### between and
+
+Alternative to `col >= x and col <= y` (i.e. between is inclusive)
+
+```sql
+select col1
+from table
+where col2 between 1 and 2; 
+```
+
+#### in 
+
+```sql
+select col1
+from table
+where col2 in (1, 10, 100);
+```
+
+#### is
+
+```sql
+select col1
+from table
+where col2 is null;
+```
+
+```sql
+select col1
+from table
+where col2 is not null;
+```
+
+#### comparison operators
+
+```sql
+select col1
+from table
+where col2 >= x and col2 <= y; 
+```
+
+### group by {#group-by}
+
+```sql
+select col, count(*)
+from table
+group by col;
+```
+
+### having {#having}
+
+The having clause was added to SQL because the where keyword could not be used with aggregate functions.
+
+```sql
+select col1
+from table
+group by col1
+having count(col2) > 10;
+```
+
+### order by {#order-by}
+
+in ascending order by default
+
+```sql
+select col1
+from table
+order by col2, col3;
+```
+
+in descending order - using keyword `desc`
+
+```sql
+select col1
+from table
+order by col2 desc, col3;
+```
+
+by column position rather than name
+
+```sql
+select col1
+from table
+order by 2, 3;
+```
+
+*********************************************************************
+
+## new variables
+
+### aggregate functions
+
+```sql
+select count(*) as n
+from table;
+```
+
+```sql
+select count(col) * 100.0 / count(*) as asdf
+from table;
+```
+
+```sql
+select 
+  avg(col) as avg, 
+  max(col) as max, 
+  sum(col) as sum
+from table;
+```
+
+### case when {#case-when}
+
+```sql
+case
+    when condition1 then result1
+    when condition2 then result2
+    ...
+    when conditionN then resultN
+    else result0
+end;
+```
+
+
+
