@@ -14,7 +14,7 @@ navbar:
     - text: "how2"
       menu:
         - text: "how2-py"
-          href: https://dkidney.github.io/how2-cli/
+          href: https://dkidney.github.io/how2-py/
         - text: "how2-cli"
           href: https://dkidney.github.io/how2-cli/
 #        - text: "how2-sql"
