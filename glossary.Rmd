@@ -11,5 +11,9 @@ editor_options:
 
 term | definition
 ------------- | -------------
-RDBMS | Relational DataBase Managenent System
-asdf | asdf
+DDL statements | Data Definition Language statements
+DML statements | Data Modification Language statements
+Primary Key | a key in a relational database that is unique for each record
+RDBMS | Relational DataBase Management System
+
+

@@ -1,0 +1,60 @@
+---
+title: sub-queries
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r knitr_config, code=readLines("_knitr_config.R"), echo=FALSE}
+```
+
+*********************************************************************
+
+## in where clause
+
+```sql
+select col1 from table
+where col2 = (select max(col2) from table)
+```
+
+```sql
+select col1 from table
+where col2 > (select avg(col2) from table)
+```
+
+multiple tables:
+
+```sql
+select col1 from table1
+where col2 in (select col3 from table2)
+```
+
+```sql
+select col1 from table1
+where col2 in (select col3 from table2 where col4 = value)
+```
+
+*********************************************************************
+
+## in from clause
+
+i.e. derived tables or table expressions
+
+outer query uses the results of the sub-query as a data source
+
+```sql
+
+```
+
+
+*********************************************************************
+
+## in list of selected columns
+
+i.e. column expressions
+
+```sql
+select col1, col2,
+(select avg(col1) as avg_col1 from table)
+from table
+```
+

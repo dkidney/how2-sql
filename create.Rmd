@@ -12,19 +12,34 @@ editor_options:
 ## create from scratch
 
 ```sql
+drop table new_table_name; --in case it already exists
 create table new_table_name (
-    column1 datatype,
-    column2 datatype,
-    column3 datatype,
+    column1 datatype [optional keywords],
+    column2 datatype [optional keywords],
+    column3 datatype [optional keywords],
    ....
 );
 ```
 
 Example data types:
 
-* `varchar(255)`  
-* `number(38,0)`  
-* `int`  
+type | definition
+------------- | -------------
+`char(2)` | character string of fixed length = 2 characters
+`varchar(255)` | character string of variable length up to 255 characters
+`number(38,0)` | float
+`int` | integer
+
+Example optional keywords
+
+```sql
+create table new_table_name (
+    column1 int primary key not null,
+    column2 varchar(255) not null
+    column3 varchar(255)
+   ....
+);
+```
 
 ## create from an existing table
 

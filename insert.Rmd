@@ -1,0 +1,36 @@
+---
+title: insert
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r knitr_config, code=readLines("_knitr_config.R"), echo=FALSE}
+```
+
+*********************************************************************
+
+## insert into
+
+Number of values must be equal to the number of column names in the list.
+
+```sql
+insert into tablename
+    (column1, column2, ..., columnN)
+values 
+    (value1, value2, ..., valueN)
+```
+
+multiple rows
+
+```sql
+insert into tablename
+    (column1, column2, ..., columnN)
+values 
+    (value11, value21, ..., valueN1),
+    (value12, value22, ..., valueN2),
+    (value13, value23, ..., valueN3),
+    ...
+    (value1M, value2M, ..., valueNM)
+```
+
+

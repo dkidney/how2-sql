@@ -433,16 +433,31 @@ div.tocify {
       <a href="create.html">create</a>
     </li>
     <li>
-      <a href="todo.html">insert</a>
+      <a href="insert.html">insert</a>
     </li>
     <li>
       <a href="select.html">select</a>
     </li>
     <li>
-      <a href="todo.html">update</a>
+      <a href="update.html">update</a>
     </li>
     <li>
-      <a href="todo.html">delete</a>
+      <a href="delete.html">delete</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    topics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="joins.html">joins</a>
+    </li>
+    <li>
+      <a href="sub-queries.html">sub-queries</a>
     </li>
   </ul>
 </li>
@@ -498,27 +513,54 @@ div.tocify {
 <hr />
 <div id="create-from-scratch" class="section level2">
 <h2>create from scratch</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">create</span> <span class="kw">table</span> new_table_name (</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    column1 datatype,</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    column2 datatype,</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    column3 datatype,</span>
-<span id="cb1-5"><a href="#cb1-5"></a>   <span class="op">....</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>);</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">drop</span> <span class="kw">table</span> new_table_name; <span class="co">--in case it already exists</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">create</span> <span class="kw">table</span> new_table_name (</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    column1 datatype [optional keywords],</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    column2 datatype [optional keywords],</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    column3 datatype [optional keywords],</span>
+<span id="cb1-6"><a href="#cb1-6"></a>   <span class="op">....</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>);</span></code></pre></div>
 <p>Example data types:</p>
-<ul>
-<li><code>varchar(255)</code><br />
-</li>
-<li><code>number(38,0)</code><br />
-</li>
-<li><code>int</code></li>
-</ul>
+<table>
+<thead>
+<tr class="header">
+<th>type</th>
+<th>definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>char(2)</code></td>
+<td>character string of fixed length = 2 characters</td>
+</tr>
+<tr class="even">
+<td><code>varchar(255)</code></td>
+<td>character string of variable length up to 255 characters</td>
+</tr>
+<tr class="odd">
+<td><code>number(38,0)</code></td>
+<td>float</td>
+</tr>
+<tr class="even">
+<td><code>int</code></td>
+<td>integer</td>
+</tr>
+</tbody>
+</table>
+<p>Example optional keywords</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">create</span> <span class="kw">table</span> new_table_name (</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    column1 <span class="dt">int</span> <span class="kw">primary</span> <span class="kw">key</span> <span class="kw">not</span> <span class="kw">null</span>,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    column2 <span class="dt">varchar</span>(<span class="dv">255</span>) <span class="kw">not</span> <span class="kw">null</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    column3 <span class="dt">varchar</span>(<span class="dv">255</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>   <span class="op">....</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>);</span></code></pre></div>
 </div>
 <div id="create-from-an-existing-table" class="section level2">
 <h2>create from an existing table</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">create</span> <span class="kw">table</span> new_table_name <span class="kw">as</span> </span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">select</span> column1, column2,<span class="op">..</span>.</span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">from</span> existing_table_name</span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="kw">where</span> <span class="op">....</span> ;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">create</span> <span class="kw">table</span> new_table_name <span class="kw">as</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">select</span> column1, column2,<span class="op">..</span>.</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="kw">from</span> existing_table_name</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="kw">where</span> <span class="op">....</span> ;</span></code></pre></div>
 </div>
 
 

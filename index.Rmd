@@ -4,6 +4,8 @@ author: "Darren Kidney"
 date: '`r format(Sys.Date(), "%d %b %Y")`'
 ---
 
+## links
+
 * https://www.w3schools.com/sql/default.asp  
 * https://www.w3schools.com/sql/sql_quickref.asp  
 * https://docs.telemetry.mozilla.org/concepts/sql_style.html

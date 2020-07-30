@@ -1,0 +1,30 @@
+---
+title: update
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r knitr_config, code=readLines("_knitr_config.R"), echo=FALSE}
+```
+
+*********************************************************************
+
+**If you don't specify the WHERE clause all the rows in the table are updated**
+
+```sql
+update tablename
+set column=value
+where condition
+```
+
+```sql
+update tablename
+set 
+    column1=value1
+    column2=value2
+    column3=value3
+    ...
+    columnN=valueN
+where <primary_key>=42
+```
+

@@ -19,7 +19,7 @@ editor_options:
 
 * how to use [case when](#case-when)  
 * how to use [having](#having)  
-* how to do a grouped sum ???
+* how to do a [grouped sum](#grouped-aggregations)  
 
 *********************************************************************
 
@@ -36,6 +36,22 @@ order by column_name(s);
 
 *********************************************************************
 
+## basics
+
+```sql
+select * from table
+```
+
+```sql
+select * from table limit 10
+```
+
+```sql
+select distinct col1, col2 from table
+```
+
+*********************************************************************
+
 ## clauses
 
 ### where {#where}
@@ -46,22 +62,19 @@ order by column_name(s);
 * the `%` is a wildcard character and represents 0 or more of any character and can be placed at the start or end of the pattern
 
 ```sql
-select col1
-from table
+select col1 from table
 where col2 like 'asdf%';
 ```
 
 ```sql
-select col1
-from table
+select col1 from table
 where col2 not like 'asdf%';
 ```
 
 #### like any
 
 ```sql
-select *
-from table
+select * from table
 where col like any (
   'this %',
   'that %'
@@ -71,8 +84,7 @@ where col like any (
 #### and / or
 
 ```sql
-select col1
-from table
+select col1 from table
 where (col2 = 1 or col2 = 2)
 and (col3 = 'A' or col3 = 'B');
 ```
@@ -82,45 +94,45 @@ and (col3 = 'A' or col3 = 'B');
 Alternative to `col >= x and col <= y` (i.e. between is inclusive)
 
 ```sql
-select col1
-from table
+select col1 from table
 where col2 between 1 and 2; 
 ```
 
 #### in 
 
 ```sql
-select col1
-from table
+select col1 from table
 where col2 in (1, 10, 100);
 ```
 
 #### is
 
 ```sql
-select col1
-from table
+select col1 from table
 where col2 is null;
 ```
 
 ```sql
-select col1
-from table
+select col1 from table
 where col2 is not null;
 ```
 
 #### comparison operators
 
 ```sql
-select col1
-from table
+select col1 from table
 where col2 >= x and col2 <= y; 
+```
+
+```sql
+select col1 from table
+where col2 <> x -- not equal to
 ```
 
 ### group by {#group-by}
 
 ```sql
-select col, count(*)
+select col, count(col) as n
 from table
 group by col;
 ```
@@ -129,11 +141,19 @@ group by col;
 
 The having clause was added to SQL because the where keyword could not be used with aggregate functions.
 
+Works only with `group by`
+
 ```sql
-select col1
-from table
+select col1 from table
 group by col1
 having count(col2) > 10;
+```
+
+```sql
+select col1, count(col1) as n
+from table
+group by col1
+having count(col1) > 10;
 ```
 
 ### order by {#order-by}
@@ -141,35 +161,49 @@ having count(col2) > 10;
 in ascending order by default
 
 ```sql
-select col1
-from table
+select col1 from table
 order by col2, col3;
 ```
 
 in descending order - using keyword `desc`
 
 ```sql
-select col1
-from table
+select col1 from table
 order by col2 desc, col3;
 ```
 
 by column position rather than name
 
 ```sql
-select col1
-from table
+select col1 from table
 order by 2, 3;
 ```
 
 *********************************************************************
 
-## new variables
+## built-in functions
 
 ### aggregate functions
 
+* `avg`  
+* `count`  
+* `max`  
+* `min`  
+* `sum`  
+
 ```sql
-select count(*) as n
+select count(*) as n_col
+from table;
+```
+
+```sql
+select count(col1) as n_col
+from table
+where col1='asdf';
+```
+
+```sql
+select count(distinct col) as n_distinct_col1
 from table;
 ```
 
@@ -186,15 +220,89 @@ select
 from table;
 ```
 
+```sql
+select 
+  avg(col1 / col2) as avg, 
+  max(col1 + col2) as max, 
+  sum(col1 * col2) as sum
+from table;
+```
+
+#### filtered aggregations {#filtered-aggregations}
+
+```sql
+select 
+  avg(col2) as avg, 
+  max(col2) as max, 
+  sum(col2) as sum
+from table
+where col1 = val
+```
+
+#### grouped aggregations {#grouped-aggregations}
+
+```sql
+select 
+  col1
+  avg(col2) as avg_col1, 
+  max(col2) as max_col1, 
+  sum(col2) as sum_col1,
+from table
+group by col1
+```
+
+### scalar and string functions
+
+* round  
+* length - length of string  
+* ucase - convert string to upper case  
+* lcase - convert string to lower case  
+
+```sql
+select * from table
+where lcase(col) = 'hello'
+```
+
+```sql
+select distinct(ucase(col1)) from table
+```
+
+### date and time functions
+
+* year  
+* month  
+* day  
+* dayofweek  
+* dayofmonth  
+* dayofyear  
+* month - converts date to `'01'`, `'02'`, ..., `'12'`  
+* hour  
+* minute  
+* second  
+
+special registers
+
+* current_date  
+* current_time  
+
+```sql
+select 
+  current_date - col1 + 3 days as foo, 
+  month(col2) as bar
+from table
+```
+
+## misc
+
 ### case when {#case-when}
 
 ```sql
 case
-    when condition1 then result1
-    when condition2 then result2
+    when condition1 then value1
+    when condition2 then value2
     ...
-    when conditionN then resultN
-    else result0
+    when conditionN then valueN
+    else value0
 end;
 ```
 

@@ -8,13 +8,19 @@ navbar:
         - text: "create"
           href: create.html
         - text: "insert"
-          href: todo.html
+          href: insert.html
         - text: "select"
           href: select.html
         - text: "update"
-          href: todo.html
+          href: update.html
         - text: "delete"
-          href: todo.html
+          href: delete.html
+    - text: "topics"
+      menu:
+        - text: "joins"
+          href: joins.html
+        - text: "sub-queries"
+          href: sub-queries.html
   right:
     - text: "glossary"
       href: glossary.html

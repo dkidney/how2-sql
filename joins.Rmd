@@ -1,0 +1,25 @@
+---
+title: joins
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r knitr_config, code=readLines("_knitr_config.R"), echo=FALSE}
+```
+
+*********************************************************************
+
+## implicit
+
+```sql
+select * from table1, table2
+```
+
+*********************************************************************
+
+## inner
+
+
+*********************************************************************
+
+## outer
