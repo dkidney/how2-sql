@@ -1,0 +1,29 @@
+---
+title: functions
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r knitr_config, code=readLines("_knitr_config.R"), echo=FALSE}
+```
+
+*********************************************************************
+
+## links 
+
+* https://www.w3schools.com/sql/sql_ref_mysql.asp
+
+*********************************************************************
+
+## cast
+
+`cast(value as datatype)`
+
+E.g. can be used in `select` or `where`.
+
+```sql
+cast("2020-01-01" as date)
+cast("14:06:10" as time)
+```
+
+
