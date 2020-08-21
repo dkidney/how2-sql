@@ -1,0 +1,23 @@
+---
+title: systems
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r knitr_config, code=readLines("_knitr_config.R"), echo=FALSE}
+```
+
+*********************************************************************
+
+## APIs
+
+Application / Database | DB-API
+------------- | -------------
+MySQL | MySQL Connector
+PostgreSQL | psycopg2
+MongoDB | PyMongo
+IBM DB2 | ibm_db
+MS SQL Server | dblib API
+Database access for MS Windows OS | ODBC
+Oracle | OCI
+Java | JDBC

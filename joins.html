@@ -20,11 +20,7 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -326,69 +322,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -396,16 +329,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -448,6 +371,18 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    functions
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="_todo.html">cast</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     topics
      
     <span class="caret"></span>
@@ -458,6 +393,9 @@ div.tocify {
     </li>
     <li>
       <a href="sub-queries.html">sub-queries</a>
+    </li>
+    <li>
+      <a href="systems.html">systems</a>
     </li>
   </ul>
 </li>
@@ -509,25 +447,84 @@ div.tocify {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#implicit">implicit</a></li>
+<li><a href="#explicit">explicit</a>
+<ul>
+<li><a href="#inner">inner</a></li>
+<li><a href="#left-outer">left (outer)</a></li>
+<li><a href="#right-outer">right (outer)</a></li>
+<li><a href="#full-outer">full (outer)</a></li>
+</ul></li>
+<li><a href="#filtering">filtering</a>
+<ul>
+<li><a href="#on-clause">on clause</a></li>
+<li><a href="#where-clause">where clause</a></li>
+</ul></li>
+</ul>
+</div>
 
 <hr />
 <div id="implicit" class="section level2">
 <h2>implicit</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">select</span> <span class="op">*</span> <span class="kw">from</span> table1, table2</span></code></pre></div>
+<p>E.g. implicit full join:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">select</span> <span class="op">*</span> <span class="kw">from</span> table1, table2</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">select</span> a.col3, b.col4</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">from</span> table1 a, table2 b</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">where</span> a.col1 <span class="op">==</span> b.col2</span></code></pre></div>
 <hr />
 </div>
-<div id="inner" class="section level2">
-<h2>inner</h2>
+<div id="explicit" class="section level2">
+<h2>explicit</h2>
+<div id="inner" class="section level3">
+<h3>inner</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">select</span> a.col1, b.col2</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">from</span> table1 a</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">inner</span> <span class="kw">join</span> table2 b <span class="kw">on</span> a.col1<span class="op">=</span>b.col1</span></code></pre></div>
+</div>
+<div id="left-outer" class="section level3">
+<h3>left (outer)</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">select</span> a.col1, b.col2</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">from</span> table1 a</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">left</span> <span class="kw">join</span> table2 b <span class="kw">on</span> a.col1<span class="op">=</span>b.col1</span></code></pre></div>
+</div>
+<div id="right-outer" class="section level3">
+<h3>right (outer)</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">select</span> a.col1, b.col2</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">from</span> table1 a</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">right</span> <span class="kw">join</span> table2 b <span class="kw">on</span> a.col1<span class="op">=</span>b.col1</span></code></pre></div>
+</div>
+<div id="full-outer" class="section level3">
+<h3>full (outer)</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">select</span> a.col1, b.col2</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">from</span> table1 a</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">full</span> <span class="kw">join</span> table2 b <span class="kw">on</span> a.col1<span class="op">=</span>b.col1</span></code></pre></div>
 <hr />
 </div>
-<div id="outer" class="section level2">
-<h2>outer</h2>
+</div>
+<div id="filtering" class="section level2">
+<h2>filtering</h2>
+<div id="on-clause" class="section level3">
+<h3>on clause</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">select</span> a.col1, b.col2</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">from</span> table1 a</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">inner</span> <span class="kw">join</span> table2 b <span class="kw">on</span> a.col1<span class="op">=</span>b.col1 </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">and</span> b.col3 <span class="op">&gt;</span> <span class="dv">100</span></span></code></pre></div>
+<p>the <code>and</code> statement is evaluated <strong>BEFORE</strong> the join occurs.</p>
+</div>
+<div id="where-clause" class="section level3">
+<h3>where clause</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">select</span> a.col1, b.col2</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">from</span> table1 a</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">inner</span> <span class="kw">join</span> table2 b <span class="kw">on</span> a.col1<span class="op">=</span>b.col1 </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="kw">where</span> b.col2 <span class="op">&gt;</span> <span class="dv">10</span></span></code></pre></div>
+<p>the <code>where</code> statement is evaluated <strong>AFTER</strong> the join occurs.</p>
+</div>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -560,32 +557,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3,h4",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -2,6 +2,9 @@
 title: glossary
 editor_options: 
   chunk_output_type: console
+output:
+    html_document:
+        toc: false
 ---
 
 ```{r knitr_config, code=readLines("_knitr_config.R"), echo=FALSE}
@@ -9,11 +12,14 @@ editor_options:
 
 *********************************************************************
 
-term | definition
-------------- | -------------
+term      | definition
+--------- | -----------------------
 DDL statements | Data Definition Language statements
 DML statements | Data Modification Language statements
 Primary Key | a key in a relational database that is unique for each record
+Foreign Key | a column referring to the primary key in another table
 RDBMS | Relational DataBase Management System
+Parent table | a table containing a primary key that is related to at least one foreign key
+Dependent table | a table containing one or more foreign keys (also called a child table)
 
 

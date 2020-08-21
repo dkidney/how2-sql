@@ -9,17 +9,78 @@ editor_options:
 
 *********************************************************************
 
-## implicit
+## implicit 
+
+E.g. implicit full join:
 
 ```sql
 select * from table1, table2
 ```
 
+```sql
+select a.col3, b.col4
+from table1 a, table2 b
+where a.col1 == b.col2
+```
+
 *********************************************************************
 
-## inner
+## explicit 
 
+### inner
+
+```sql
+select a.col1, b.col2
+from table1 a
+inner join table2 b on a.col1=b.col1
+```
+
+### left (outer)
+
+```sql
+select a.col1, b.col2
+from table1 a
+left join table2 b on a.col1=b.col1
+```
+
+### right (outer) 
+
+```sql
+select a.col1, b.col2
+from table1 a
+right join table2 b on a.col1=b.col1
+```
+
+### full (outer)
+
+```sql
+select a.col1, b.col2
+from table1 a
+full join table2 b on a.col1=b.col1
+```
 
 *********************************************************************
 
-## outer
+## filtering
+
+### on clause
+
+```sql
+select a.col1, b.col2
+from table1 a
+inner join table2 b on a.col1=b.col1 
+and b.col3 > 100
+```
+
+the `and` statement is evaluated **BEFORE** the join occurs.
+
+### where clause
+
+```sql
+select a.col1, b.col2
+from table1 a
+inner join table2 b on a.col1=b.col1 
+where b.col2 > 10
+```
+
+the `where` statement is evaluated **AFTER** the join occurs.

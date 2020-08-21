@@ -15,12 +15,18 @@ navbar:
           href: update.html
         - text: "delete"
           href: delete.html
+    - text: "functions"
+      menu:
+        - text: "cast"
+          href: _todo.html
     - text: "topics"
       menu:
         - text: "joins"
           href: joins.html
         - text: "sub-queries"
           href: sub-queries.html
+        - text: "systems"
+          href: systems.html
   right:
     - text: "glossary"
       href: glossary.html

@@ -2,10 +2,18 @@
 title: "How to do stuff in SQL"
 author: "Darren Kidney"
 date: '`r format(Sys.Date(), "%d %b %Y")`'
+output:
+    html_document:
+        toc: false
 ---
 
 ## links
 
-* https://www.w3schools.com/sql/default.asp  
-* https://www.w3schools.com/sql/sql_quickref.asp  
-* https://docs.telemetry.mozilla.org/concepts/sql_style.html
+w3schools
+
+* [SQL Tutorial](https://www.w3schools.com/sql/default.asp)  
+* [SQL Quick Reference](https://www.w3schools.com/sql/sql_quickref.asp)  
+
+mozilla
+
+* [SQL Style Guide](https://docs.telemetry.mozilla.org/concepts/sql_style.html)
