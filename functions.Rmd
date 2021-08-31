@@ -26,4 +26,3 @@ cast("2020-01-01" as date)
 cast("14:06:10" as time)
 ```
 
-
